@@ -13,7 +13,7 @@ public class Painter implements Runnable {
         this.brushes = brushes;
     }
 
-    @Override
+  
     public void run() {
         try {
             paints.takePaint();

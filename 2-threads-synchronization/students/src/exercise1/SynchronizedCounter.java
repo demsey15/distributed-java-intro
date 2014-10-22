@@ -1,16 +1,19 @@
 package exercise1;
 
+import java.util.concurrent.locks.*;
+
 import common.Counter;
 
 public class SynchronizedCounter implements Counter {
 
-    @Override
-    public void increment() {
+	private long field = 0;
+	
+	
+    public synchronized void increment() {
+		field++;
+	}
 
-    }
-
-    @Override
     public long getValue() {
-        return 0;
+        return field;
     }
 }

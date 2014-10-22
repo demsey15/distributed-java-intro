@@ -10,7 +10,7 @@ public class CountingTask implements Runnable {
         this.numberOfIterations = numberOfIterations;
     }
 
-    @Override
+    
     public void run() {
         for (int i = 0; i < numberOfIterations; ++i) {
             counter.increment();

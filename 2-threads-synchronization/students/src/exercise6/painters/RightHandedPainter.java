@@ -9,7 +9,7 @@ public class RightHandedPainter extends Painter {
         super(paint, brush);
     }
 
-    @Override
+  
     public void run() {
         try {
             synchronized (brush) {
