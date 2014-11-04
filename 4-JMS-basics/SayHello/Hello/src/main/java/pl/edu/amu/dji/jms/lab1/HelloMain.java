@@ -8,6 +8,7 @@ public class HelloMain {
     public static void main(String[] args) throws JMSException {
         ConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://localhost:61616");
 
+        
         /*
         Create Connection instance from ConnectionFactory
 
@@ -26,6 +27,14 @@ public class HelloMain {
         Session session = null;
         Destination queue = null;
         MessageConsumer consumer = null;
+        
+        
+        connection = connectionFactory.createConnection();
+        session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+        queue = session.createQueue("SayHelloQueue");
+        consumer = session.createConsumer(queue);
+        
+ 
 
         /*
         Create MessageConsumer instance from session (check Session class and createConsumer method)
@@ -37,8 +46,16 @@ public class HelloMain {
         - don't forget to handle JMSException
          */
         MessageListener helloListener = new MessageListener() {
-            @Override
+            
             public void onMessage(Message message) {
+            	if(message instanceof TextMessage){
+            		try {
+						System.out.println(((TextMessage) message).getText());
+					} catch (JMSException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+                }
                 throw new UnsupportedOperationException();
             }
         };
