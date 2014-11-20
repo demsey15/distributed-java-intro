@@ -11,10 +11,10 @@ public class Paints {
 
     public void takePaint() throws InterruptedException {
     	lock.lock();
+    	try{
     	while(available <= 0){
         	condition.await();
         }
-        try{
     	if (available == 0) {
             throw new IllegalStateException("There are no more paints!");
         }

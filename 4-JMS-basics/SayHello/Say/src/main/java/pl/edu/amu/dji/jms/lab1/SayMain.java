@@ -19,6 +19,7 @@ public class SayMain {
         /*
         Create Connection instance from ConnectionFactory
 
+
         Create Session instance from connection object.
         - Session shouldn't by transactional and should by in auto acknowledge mode (Session.AUTO_ACKNOWLEDGE).
 
@@ -29,9 +30,6 @@ public class SayMain {
         - set producer delivery mode to non persistent (DeliveryMode.NON_PERSISTENT);
          */
 
-
-
-
         Connection connection = connectionFactory.createConnection();
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
         Destination queue = session.createQueue("SayHelloQueue");
@@ -39,26 +37,20 @@ public class SayMain {
 
         producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
 
-
-        connection = connectionFactory.createConnection();
-        session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-        queue = session.createQueue("SayHelloQueue");
-        producer = session.createProducer(queue);
-        
-        producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
         
         connection.start();
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        String in = "";
-        while (!in.equalsIgnoreCase(EXIT)) {
+        String text = "";
+        while (!text.equalsIgnoreCase(EXIT)) {
             System.out.print("Say hello to:");
 
 
             //Create TextMessage from session with text variable
+
             //Send this message to queue (use producer for that)
 
-            in = bufferedReader.readLine();
-            TextMessage message = session.createTextMessage(in);
+            text = bufferedReader.readLine();
+            TextMessage message = session.createTextMessage(text);
             producer.send(message);
 
         }

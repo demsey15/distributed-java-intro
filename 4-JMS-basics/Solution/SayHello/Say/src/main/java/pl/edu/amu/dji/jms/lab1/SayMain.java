@@ -16,10 +16,10 @@ public class SayMain {
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
         Destination queue = session.createQueue("SayHelloQueue");
         Destination topic = session.createTopic("SayHelloTopic");
-        MessageProducer producer = session.createProducer(queue);
+       MessageProducer producer = session.createProducer(queue);
+     //   MessageProducer producer = session.createProducer(topic);
         producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
         producer.setTimeToLive(1000 * 3);
-        connection.start();
 
         connection.start();
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));

@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 public class WholesalerApp {
     public static final String EXIT = "exit";
 
+
     public static void main(String[] args) throws Exception {
         ApplicationContext context = new ClassPathXmlApplicationContext("/context.xml");
         OfferService offerService = (OfferService) context.getBean("offerService");
@@ -25,5 +26,8 @@ public class WholesalerApp {
                 offerService.sendOffer(Double.valueOf(in));
             }
         }
+
+
+
     }
 }
