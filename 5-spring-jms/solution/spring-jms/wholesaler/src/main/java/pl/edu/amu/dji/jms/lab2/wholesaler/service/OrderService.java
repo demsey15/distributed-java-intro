@@ -18,7 +18,7 @@ public class OrderService implements MessageListener{
             int quantity = mapMessage.getInt("quantity");
             String retailerID = mapMessage.getString("retailerID");
 
-            System.out.println("Ordered quantity: " + quantity + " by " + retailerID);
+            System.out.println("\nOrdered quantity: " + quantity + " by " + retailerID);
         } catch (JMSException ex){
             throw new IllegalStateException(ex);
         }

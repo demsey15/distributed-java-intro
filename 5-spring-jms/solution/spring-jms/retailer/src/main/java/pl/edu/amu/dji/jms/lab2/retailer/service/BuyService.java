@@ -29,7 +29,7 @@ public class BuyService implements MessageListener {
 
         try{
             Double price = mapMessage.getDouble("price");
-            if(maxPrice.compareTo(price)==1){
+            if(maxPrice.compareTo(price)== 1){
                 Destination replayTo = mapMessage.getJMSReplyTo();
 
                 jmsTemplate.send(replayTo, new MessageCreator() {
@@ -37,8 +37,8 @@ public class BuyService implements MessageListener {
                     public Message createMessage(Session session) throws JMSException {
                         MapMessage buy = session.createMapMessage();
                         buy.setString("retailerID", getClass().getName());
-                        buy.setInt("quantity", 10);
-
+                        buy.setInt("quantity", 7);
+                        System.out.println("Tu buy service");
                         return buy;
                     }
                 });

@@ -1,6 +1,7 @@
 package pl.edu.amu.dji.jms.lab2.wholesaler.service;
 
 import com.google.common.base.Preconditions;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.jms.JMSException;
 import javax.jms.MapMessage;
@@ -10,6 +11,7 @@ import javax.jms.MessageListener;
 public class OrderService implements MessageListener{
 
     @Override
+    @Transactional
     public void onMessage(Message message) {
         try{
             Preconditions.checkArgument(message instanceof MapMessage);
